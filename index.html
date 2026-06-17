@@ -37,18 +37,17 @@
     <div id="game-container"></div>
     <div id="loading">正在加载游戏，请稍候...</div>
 
-   <script src="https://cjrtnc.leaningtech.com/3.1/cj3loader.js"></script>
-    </script>
+    <script src="https://cjrtnc.leaningtech.com/3.1/cj3loader.js"></script>
     <script>
         window.onload = async function() {
             try {
                 await cheerpjInit();
                 document.getElementById('loading').style.display = 'none';
                 cheerpjCreateDisplay("#game-container");
-                await cheerpjRunJar("/app/ChanelBattleGame.jar");
+                await cheerpjRunJar("./ChanelBattleGame.jar");
             } catch(e) {
                 var loadingEl = document.getElementById('loading');
-                loadingEl.innerHTML = '加载失败，请检查网络或稍后重试。<br><small>错误信息：' + e.message + '</small>';
+                loadingEl.innerHTML = '加载失败，请检查网络或稍后重试。<br><small>错误信息：' + e.message + '</small><br><small>详细：' + (e.stack || '') + '</small>';
                 loadingEl.className = 'error';
                 console.error(e);
             }
